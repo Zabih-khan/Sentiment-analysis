@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <title>Sentiment Analysis</title>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Sentiment Analysis Logo"
+                        class="navbar-logo">
+                    Sentiment Analysis
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container text-container">
+            <h1>Understand Your Audience</h1>
+            <p>Analyze the sentiment of your social media posts, reviews, and more.</p>
+            <button onclick="document.querySelector('#content').scrollIntoView({ behavior: 'smooth' })">Get
+                Started</button>
+        </div>
+    </section>
+
+    <!-- New Section Below Hero -->
+    <section class="info-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Column -->
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h2 class="info-heading">Twitter Sentiment Analysis</h2>
+                    <ul class="info-list fa-ul">
+                        <li>Gain insights from text data</li>
+                        <li>Visualize sentiment trends</li>
+                        <li>Make data-driven decisions</li>
+                        <li>Enhance user engagement</li>
+                        <li>Quickly detect negative comments & respond instantly</li>
+                        <li>Monitor sentiment about your brand, product</li>
+                    </ul>
+                    <button class="btn btn-primary">Learn More</button>
+                </div>
+                <!-- Right Column -->
+                <div class="col-md-6">
+                    <img src="{{ url_for('static', filename='images/sentiment graph.png') }}"
+                        alt="Sentiment Analysis Graph" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section class="examples-section">
+        <div class="container">
+            <div class="row">
+                <!-- Negative Sentiment Box -->
+                <div class="col-md-4">
+                    <div class="sentiment-box negative">
+                        <img src="{{ url_for('static', filename='images/negative_emoji.png') }}" alt="Negative Emoji"
+                            class="img-fluid">
+                        <p>Your support team is useless and unhelpful.</p>
+                        <p class="sentiment-label negative highlight-negative">NEGATIVE</p>
+                    </div>
+                </div>
+                <!-- Neutral Sentiment Box -->
+                <div class="col-md-4">
+                    <div class="sentiment-box neutral">
+                        <img src="{{ url_for('static', filename='images/neutral_emoji.png') }}" alt="Neutral Emoji"
+                            class="img-fluid">
+                        <p>The product is okay I guess, but not great.</p>
+                        <p class="sentiment-label neutral highlight-neutral">NEUTRAL</p>
+                    </div>
+                </div>
+                <!-- Positive Sentiment Box -->
+                <div class="col-md-4">
+                    <div class="sentiment-box positive">
+                        <img src="{{ url_for('static', filename='images/positive_emoji.png') }}" alt="Positive Emoji"
+                            class="img-fluid">
+                        <p>My experience so far has been fantastic!</p>
+                        <p class="sentiment-label positive highlight-positive">POSITIVE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main id="content" class="content">
+        <div class="container">
+            <h2>Analyze Your Text</h2>
+            <div class="row">
+                <!-- Left Column: Image -->
+                <div class="col-md-6">
+                    <div class="image-section">
+                        <img src="{{ url_for('static', filename='images/Twitter Sentiment.png') }}"
+                            alt="Sentiment Analysis Graph" class="img-fluid rounded">
+                    </div>
+                </div>
+                <!-- Right Column: Form -->
+                <div class="col-md-6">
+                    <div class="form-section">
+                        <form method="POST" action="/predict" aria-label="Sentiment Analysis Form">
+                            <div class="mb-3">
+                                <label for="text" class="form-label">Enter the text to analyze</label>
+                                <textarea class="form-control" id="text" name="text" rows="4"
+                                    placeholder="Enter your text here..."
+                                    required>{{ request.form.get('text', '') }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Choose Model</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="model_type" value="bert"
+                                        id="bert" {% if model_type=='bert' %}checked{% endif %}>
+                                    <label class="form-check-label" for="bert">BERT</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="model_type" value="bilstm"
+                                        id="bilstm" {% if model_type=='bilstm' %}checked{% endif %}>
+                                    <label class="form-check-label" for="bilstm">BiLSTM</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Analyze</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Section -->
+            {% if text %}
+            <div id="result" class="result-section">
+                <p id="result-text"><strong>Text:</strong> {{ text }}</p>
+                <div id="result-scores">
+                    <h4>Scores:</h4>
+
+                    {% set emojis = {'positive': '😍', 'neutral': '😐', 'negative': '😡'} %}
+                    {% set sorted_scores = scores|dictsort(false, 'value') %}
+                    {% set highest_label, highest_score = sorted_scores[-1] %}
+
+                    <ul>
+                        {% for label, score in scores.items() %}
+                        <li class="{% if label == highest_label %}highlight{% endif %}">
+                            {{ emojis[label] }} {{ label|capitalize }}: {{ (score * 100)|round(2) }}%
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+
+
+                </div>
+                <div id="result-pie-chart">
+                    {{ pie_chart_html|safe }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+
+    <!-- Model Accuracy Section -->
+    <section class="model-accuracy">
+        <div class="container">
+            <h2 class="text-left">Model Accuracy</h2>
+            <div class="row">
+                <!-- BERT Accuracy Box -->
+                <div class="col-md-6 mb-4">
+                    <div class="accuracy-box">
+                        <h3>BERT Model Accuracy</h3>
+                        <p>The BERT model achieves an accuracy of approximately 92% on sentiment analysis tasks. Its
+                            transformer-based architecture enables it to understand the context of words in a sentence,
+                            leading to high performance in various NLP applications.</p>
+                    </div>
+                </div>
+                <!-- BiLSTM Accuracy Box -->
+                <div class="col-md-6 mb-4">
+                    <div class="accuracy-box">
+                        <h3>BiLSTM Model Accuracy</h3>
+                        <p>The BiLSTM model is optimized for sentiment analysis in Hebrew and achieves high accuracy. It
+                            captures nuanced sentiment in Hebrew text, making it valuable for applications requiring
+                            precise sentiment understanding in this language.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sentiment Benefits Section -->
+    <section class="sentiment-benefits">
+        <div class="container">
+            <h2 class="text-left">Benefits of Sentiment Analysis</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card text-center benefit-card">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='images/1.png') }}" alt="Detect Negative Comments"
+                                class="benefit-image">
+                            <h5 class="card-title">Quickly detect negative comments & respond instantly</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center benefit-card">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='images/2.png') }}" alt="Improve Response Times"
+                                class="benefit-image">
+                            <h5 class="card-title">Improve response times to urgent queries by 65%</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center benefit-card">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='images/3.png') }}" alt="Higher Data Volume"
+                                class="benefit-image">
+                            <h5 class="card-title">Take on 20% higher data volume</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center benefit-card">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='images/4.png') }}" alt="Monitor Sentiment"
+                                class="benefit-image">
+                            <h5 class="card-title">Monitor sentiment about your brand, product, or service in real time
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Sentiment Analysis Logo"> Sentiment
+                analysis
+            </div>
+            <span>&copy; 2024 Sentiment Analysis. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='scripts/scripts.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

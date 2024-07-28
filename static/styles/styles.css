@@ -1,0 +1,625 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+}
+
+.navbar {
+    background-color: #2c3e50;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-logo {
+    height: 50px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.navbar-brand {
+    color: #ecf0f1;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #ecf0f1;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #bdc3c7;
+}
+
+.hero {
+    background: linear-gradient(rgba(46, 204, 113, 0.7), rgba(39, 174, 96, 0.7)), url('../images/bg.png') no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    border-bottom: 5px solid #3498db;
+
+}
+
+.hero-content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 60px;
+    border-radius: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.hero p {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+.hero button {
+    background-color: #e74c3c;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    animation: fadeInUp 1.4s ease-in-out;
+}
+
+.hero button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+
+.info-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
+.info-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #478293;
+    margin-bottom: 20px;
+}
+
+.info-list {
+    list-style-type: none; /* Removes default bullet points */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+    font-family: Roboto, sans-serif; /* Sets font family */
+    color: #212529; /* Sets text color */
+    font-size: 18px; /* Sets font size */
+    line-height: 1.5; /* Sets line height for readability */
+}
+
+.info-list li {
+    position: relative; /* Allows positioning of pseudo-elements */
+    padding: 10px 0; /* Adds padding around list items */
+    margin: 0; /* Removes default margin */
+    border-bottom: 1px solid #e0e0e0; /* Adds a light bottom border for separation */
+}
+
+.info-list li:last-child {
+    border-bottom: none; /* Removes bottom border for the last item */
+}
+
+.info-list li::before {
+    content: ''; /* Adds content for the pseudo-element */
+    position: absolute; /* Positions the pseudo-element */
+    left: -20px; /* Adjusts the position of the icon */
+    top: 50%; /* Centers the icon vertically */
+    transform: translateY(-50%); /* Vertically centers the icon */
+    width: 10px; /* Sets width of the icon */
+    height: 10px; /* Sets height of the icon */
+    background-color: #3498db; /* Sets color of the icon */
+    border-radius: 50%; /* Makes the icon circular */
+}
+
+.info-section button {
+    background-color: #e74c3c;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    color: #ffffff;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.info-section button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.info-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    .info-heading {
+        font-size: 2rem;
+    }
+    
+    .info-list li {
+        font-size: 16px;
+    }
+
+    .info-section {
+        padding: 30px 15px;
+    }
+
+    .info-section button {
+        margin-left: 0;
+    }
+}
+
+
+
+/* Container Styling */
+.examples-section {
+    padding: 40px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: -50px;
+}
+
+/* Sentiment Box Styling */
+.sentiment-box {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    flex: 1 1 300px; /* Ensures a minimum width */
+    max-width: 300px; /* Ensures a maximum width */
+    box-sizing: border-box;
+    height: 250px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Emoji Image Styling */
+.sentiment-box img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+/* Sentiment Text Styling */
+.sentiment-box p {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+/* Sentiment Label Styling */
+.sentiment-label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Negative Sentiment Styling */
+.sentiment-box.negative {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.sentiment-box.negative .sentiment-label {
+    color: #721c24;
+}
+
+.highlight-negative {
+    background-color: #fabcac;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+/* Neutral Sentiment Styling */
+.sentiment-box.neutral {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.sentiment-box.neutral .sentiment-label {
+    color: #856404;
+}
+
+.highlight-neutral {
+    background-color: #f6e895;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+/* Positive Sentiment Styling */
+.sentiment-box.positive {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.sentiment-box.positive .sentiment-label {
+    color: #155724;
+}
+
+.highlight-positive {
+    background-color: #aef4bf;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .examples-section .sentiment-box {
+        flex: 1 1 90%;
+        min-width: auto;
+        max-width: 90%;
+        height: auto;
+    }
+}
+
+
+
+.content {
+    padding: 60px 0;
+    margin-top: -99px;
+
+}
+
+.content h2 {
+    text-align: left;
+    margin-bottom: 25px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #478293;
+}
+
+/* result heading */
+.content > div > h2{
+    margin-top: 60px;
+}
+
+.form-section {
+    background-color: #ffffff;
+    padding: 50px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    transition: box-shadow 0.3s, transform 0.3s;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-section:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+.form-section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 30px;
+}
+
+.form-section label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.form-section textarea {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+    resize: none;
+    width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+}
+
+.form-section textarea:focus {
+    border-color: #478293;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+    outline: none;
+}
+
+.form-section .form-group {
+    margin-bottom: 20px;
+}
+
+.form-section .btn-primary {
+    background-color: #e74c3c;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-section .btn-primary:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .form-section {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+}
+
+
+
+.model-accuracy {
+    padding: 60px 0;
+    background-color: #f0f2f5;
+    margin-top: -99px;
+}
+
+.model-accuracy h2 {
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: left;
+    color: #478293;
+
+}
+
+.accuracy-box {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.accuracy-box:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+.accuracy-box h3 {
+    margin-bottom: 25px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000;
+
+}
+
+.accuracy-box p {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: left;
+}
+.sentiment-benefits {
+    padding: 60px 0;
+    background-color: #e9ecef;
+    margin-top: -99px;
+}
+
+.sentiment-benefits h2 {
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #478293;
+    text-align: left;
+}
+
+.benefit-card {
+    border: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-bottom: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+    background-color: #ffffff;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.benefit-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+.benefit-card .card-body {
+    padding: 40px;
+    text-align: center;
+}
+
+.benefit-image {
+    width: 100px; /* Adjust as needed */
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.benefit-card h5 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0;
+}
+
+.footer {
+    background-color: #2c3e50; /* Dark background color for the footer */
+    color: #f8f9fa; /* Light text color */
+    padding: 20px 0; /* Decreased padding for a shorter footer */
+    text-align: center; /* Center align text */
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align items */
+    max-width: 1200px; /* Restrict container width */
+    margin: 0 auto; /* Center container */
+    padding: 0 15px; /* Add horizontal padding */
+}
+
+.footer-logo img {
+    height: 40px; /* Adjust height of the footer logo */
+    margin-bottom: 10px; /* Space between logo and text */
+}
+
+.footer span {
+    display: block;
+    margin-bottom: 10px; /* Space between text and social links */
+    font-size: 0.9rem; /* Slightly smaller font size for the text */
+}
+
+.social-links {
+    margin-top: 10px; /* Space above social links */
+}
+
+.social-links a {
+    color: #f8f9fa; /* Light color for social media icons */
+    font-size: 1.5rem; /* Size of social media icons */
+    margin: 0 10px; /* Horizontal space between icons */
+    transition: color 0.3s, transform 0.3s; /* Smooth color transition and scaling */
+}
+
+.social-links a:hover {
+    color: #007bff; /* Highlight color on hover */
+    transform: scale(1.1); /* Slightly enlarge icon on hover */
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+.result-section, #result {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    text-align: left;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+#result {
+    padding: 50px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+#result:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+#result h2, .result-section h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 30px;
+}
+
+#result p, .result-section p {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    color: #000000;
+}
+
+#result ul, .result-section ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1.2rem;
+}
+
+#result ul li, .result-section ul li {
+    margin-bottom: 15px;
+    color: #e74c3c;
+}
+
+.result-section #result-pie-chart {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #2da6ec; /* or any highlight color you prefer */
+    background-color: #dcf0a0;
+    font-size: 1.9rem;
+}
+
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.hero h1, .hero p, .hero button, .benefit-card {
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.hero h1 {
+    animation-delay: 0.2s;
+}
+
+.hero p {
+    animation-delay: 0.4s;
+}
+
+.hero button {
+    animation-delay: 0.6s;
+}
+
+.benefit-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.benefit-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.benefit-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.benefit-card:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+
